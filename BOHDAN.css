@@ -58,6 +58,7 @@ button.buy {
     border: none;
     text-align: center;
     width: max-content;
+    transition: 0.8s;
 }
 
 button.buy:hover {
