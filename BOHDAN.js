@@ -1,5 +1,8 @@
 const url = "https://my-json-server.typicode.com/HowdyWayd/NewRepos"
 
+var basketlist= [];
+
+
 // $.ajax(url + "/products", {
 //     dataType: 'json',
 //     success: (result) => {
@@ -19,6 +22,9 @@ const url = "https://my-json-server.typicode.com/HowdyWayd/NewRepos"
 $.ajax(url + "/products", {
     dataType: 'json',
     success: (result) => {
+
+var products = result;
+
         $.each(result, (index, element) => {
             $(".container").append(`
               <div class= "product">
@@ -32,7 +38,7 @@ $.ajax(url + "/products", {
               <div class="price">
               ${element.price}
               </div>
-              <button class="buy">
+              <button class="buy" onClick="${() => {addProductToBasket(element.id)}}">
               Buy
               </button>
               </div>
@@ -46,3 +52,13 @@ $.ajax(url + "/products", {
         console.log(error.statusText);
     }
 })
+
+function addProductToBasket(id) {
+    basketlist.push(
+        products.find((product) => {
+            return product.id == id;
+        })
+    )
+
+    console.log(basketlist)
+}
